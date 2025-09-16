@@ -10,7 +10,7 @@
         <PackageTags>Logger</PackageTags>
         <Title>ChroniLog.Core</Title>
         <Authors> Camilo Mejía Monsalve (Sicilo)</Authors>
-        <PackageLicenseUrl>https://github.com/sicilo/ChroniLog/blob/main/LICENSE</PackageLicenseUrl>
+        <PackageLicenseUrl>https://github.com/sicilo/ChroniLog/blob/master/ChroniLog.Core/LICENSE</PackageLicenseUrl>
         <Copyright>Copyright (c) 2025 Camilo Mejía Monsalve (Sicilo)</Copyright>
         <Version />
     </PropertyGroup>
