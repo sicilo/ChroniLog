@@ -3,7 +3,7 @@
 on:
   push:
     tags:
-      - 'flush-postgresql-v*.*.*'   # Se ejecuta SOLO cuando empujas un tag tipo v1.0.0
+      - 'flush-postgresql-v*.*.*'
     paths:
       - 'ChroniLog.Flusher.PostgreSql/**'
 
