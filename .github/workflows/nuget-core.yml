@@ -3,7 +3,7 @@ name: Publish ChroniLog.Core to NuGet
 on:
   push:
     tags:
-      - 'v*.*.*'   # Se ejecuta SOLO cuando empujas un tag tipo v1.0.0
+      - 'core-v*.*.*'   # Se ejecuta SOLO cuando empujas un tag tipo v1.0.0
 
 env:
   PROJECT_LOCATION: ChroniLog.Core/ChroniLog.Core.csproj

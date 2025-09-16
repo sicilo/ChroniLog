@@ -6,6 +6,10 @@
         <Nullable>enable</Nullable>
         <Copyright>Copyright (c) 2025 Camilo Mejía Monsalve (Sicilo)</Copyright>
         <Authors>Camilo Mejía Monsalve (Sicilo)</Authors>
+        <Version />
+        <PackageIcon>logo.png</PackageIcon>
+        <PackageTags>PostgreSQL,Logger</PackageTags>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
     </PropertyGroup>
 
     <ItemGroup>
@@ -14,6 +18,13 @@
 
     <ItemGroup>
       <PackageReference Include="Npgsql" Version="9.0.3" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="logo.png">
+        <Pack>True</Pack>
+        <PackagePath>\</PackagePath>
+      </None>
     </ItemGroup>
 
 </Project>
