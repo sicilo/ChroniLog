@@ -4,8 +4,6 @@ on:
   push:
     tags:
       - 'flush-postgresql-v*.*.*'
-    paths:
-      - 'ChroniLog.Flusher.PostgreSql/**'
 
 env:
   PROJECT_LOCATION: ChroniLog.Flusher.PostgreSql/ChroniLog.Flusher.PostgreSql.csproj
