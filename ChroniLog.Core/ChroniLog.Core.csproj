@@ -10,9 +10,9 @@
         <PackageTags>Logger</PackageTags>
         <Title>ChroniLog.Core</Title>
         <Authors>Camilo Mejía Monsalve (Sicilo)</Authors>
-        <PackageLicenseUrl>https://github.com/sicilo/ChroniLog/blob/master/ChroniLog.Core/LICENSE</PackageLicenseUrl>
+        <License>https://github.com/sicilo/ChroniLog/blob/master/ChroniLog.Core/LICENSE</License>
         <Copyright>Copyright (c) 2025 Camilo Mejía Monsalve (Sicilo)</Copyright>
-        <PackageReadmeFile>https://raw.githubusercontent.com/sicilo/ChroniLog/master/ChroniLog.Core/README.md</PackageReadmeFile>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
     </PropertyGroup>
 
     <ItemGroup>
