@@ -1,4 +1,4 @@
-﻿name: Publish ChroniLog.Core to NuGet
+﻿name: Publish ChroniLog.Flusher.PostgreSql to NuGet
 
 on:
   push:
