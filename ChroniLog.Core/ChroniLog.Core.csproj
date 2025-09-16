@@ -9,21 +9,25 @@
         <RepositoryUrl>https://github.com/sicilo/ChroniLog</RepositoryUrl>
         <PackageTags>Logger</PackageTags>
         <Title>ChroniLog.Core</Title>
-        <Authors> Camilo Mejía Monsalve (Sicilo)</Authors>
+        <Authors>Camilo Mejía Monsalve (Sicilo)</Authors>
         <PackageLicenseUrl>https://github.com/sicilo/ChroniLog/blob/master/ChroniLog.Core/LICENSE</PackageLicenseUrl>
         <Copyright>Copyright (c) 2025 Camilo Mejía Monsalve (Sicilo)</Copyright>
-        <Version />
+        <PackageReadmeFile>https://raw.githubusercontent.com/sicilo/ChroniLog/master/ChroniLog.Core/README.md</PackageReadmeFile>
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.9" />
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.9"/>
     </ItemGroup>
 
     <ItemGroup>
-      <None Include="logo.png">
-        <Pack>True</Pack>
-        <PackagePath>\</PackagePath>
-      </None>
+        <None Include="logo.png">
+            <Pack>True</Pack>
+            <PackagePath>\</PackagePath>
+        </None>
+        <None Include="README.md">
+            <Pack>True</Pack>
+            <PackagePath>\</PackagePath>
+        </None>
     </ItemGroup>
 
 </Project>
