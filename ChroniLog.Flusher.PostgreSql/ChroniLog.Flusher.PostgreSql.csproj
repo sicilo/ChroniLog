@@ -6,25 +6,29 @@
         <Nullable>enable</Nullable>
         <Copyright>Copyright (c) 2025 Camilo Mejía Monsalve (Sicilo)</Copyright>
         <Authors>Camilo Mejía Monsalve (Sicilo)</Authors>
-        <Version />
+        <Version/>
         <PackageIcon>logo.png</PackageIcon>
         <PackageTags>PostgreSQL,Logger</PackageTags>
         <PackageReadmeFile>README.md</PackageReadmeFile>
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\ChroniLog.Core\ChroniLog.Core.csproj" />
+        <ProjectReference Include="..\ChroniLog.Core\ChroniLog.Core.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Npgsql" Version="9.0.3" />
+        <PackageReference Include="Npgsql" Version="9.0.3"/>
     </ItemGroup>
 
     <ItemGroup>
-      <None Update="logo.png">
-        <Pack>True</Pack>
-        <PackagePath>\</PackagePath>
-      </None>
+        <None Update="logo.png">
+            <Pack>True</Pack>
+            <PackagePath>\</PackagePath>
+        </None>
+        <None Include="README.md">
+            <Pack>True</Pack>
+            <PackagePath>\</PackagePath>
+        </None>
     </ItemGroup>
 
 </Project>
