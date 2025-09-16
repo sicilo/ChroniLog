@@ -5,6 +5,9 @@ on:
     tags:
       - 'v*.*.*'   # Se ejecuta SOLO cuando empujas un tag tipo v1.0.0
 
+env:
+  PROJECT_LOCATION: ChroniLog.Core/ChroniLog.Core.csproj
+  
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
@@ -27,15 +30,15 @@ jobs:
 
       # 4. Restaurar dependencias
       - name: Restore
-        run: dotnet restore ./src/ChroniLog.Core/ChroniLog.Core.csproj
+        run: dotnet restore $PROJECT_LOCATION
 
       # 5. Compilar
       - name: Build
-        run: dotnet build ./src/ChroniLog.Core/ChroniLog.Core.csproj --configuration Release --no-restore
+        run: dotnet build $PROJECT_LOCATION --configuration Release --no-restore
 
       # 6. Empaquetar con la versión del tag
       - name: Pack
-        run: dotnet pack ./src/ChroniLog.Core/ChroniLog.Core.csproj \
+        run: dotnet pack $PROJECT_LOCATION \
           --configuration Release \
           -p:PackageVersion=${{ env.VERSION }} \
           -o ./artifacts
