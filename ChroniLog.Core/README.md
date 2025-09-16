@@ -1,6 +1,6 @@
 # ChroniLog 🕒📜
 
-![ChroniLog Logo](./ChroniLog.Core/logo.png)
+<img src="https://github.com/sicilo/ChroniLog/blob/master/ChroniLog.Core/logo.png" alt="ChroniLog Logo" width="150"/>
 
 ChroniLog is a .NET **asynchronous logging** modular library, 
 designed to be extensible, efficient, and easy to integrate. It allows you to save logs in different targets using **(*flush-target*)** packages, starting with **PostgreSQL** support.
