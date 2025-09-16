@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E0DE9D88-909E-440E-92FE-90CC2F6AB33C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChroniLog.Core", "ChroniLog.Core\ChroniLog.Core.csproj", "{BC7B06F8-AA08-4650-ADA4-B8DF8EBABF7D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChroniLog.Flusher.PostgreSql", "ChroniLog.Flusher.PostgreSql\ChroniLog.Flusher.PostgreSql.csproj", "{2D9BFB3A-A90D-454A-BFFF-4C7FE2B94859}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BC7B06F8-AA08-4650-ADA4-B8DF8EBABF7D} = {E0DE9D88-909E-440E-92FE-90CC2F6AB33C}
+		{2D9BFB3A-A90D-454A-BFFF-4C7FE2B94859} = {E0DE9D88-909E-440E-92FE-90CC2F6AB33C}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BC7B06F8-AA08-4650-ADA4-B8DF8EBABF7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC7B06F8-AA08-4650-ADA4-B8DF8EBABF7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC7B06F8-AA08-4650-ADA4-B8DF8EBABF7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC7B06F8-AA08-4650-ADA4-B8DF8EBABF7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D9BFB3A-A90D-454A-BFFF-4C7FE2B94859}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D9BFB3A-A90D-454A-BFFF-4C7FE2B94859}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D9BFB3A-A90D-454A-BFFF-4C7FE2B94859}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D9BFB3A-A90D-454A-BFFF-4C7FE2B94859}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

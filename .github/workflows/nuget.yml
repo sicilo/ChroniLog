@@ -1,0 +1,47 @@
+name: Publish ChroniLog.Core to NuGet
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'   # Se ejecuta SOLO cuando empujas un tag tipo v1.0.0
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Chequear el código
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2. Configurar .NET
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      # 3. Extraer versión del tag
+      - name: Extract version from tag
+        id: get_version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
+
+      # 4. Restaurar dependencias
+      - name: Restore
+        run: dotnet restore ./src/ChroniLog.Core/ChroniLog.Core.csproj
+
+      # 5. Compilar
+      - name: Build
+        run: dotnet build ./src/ChroniLog.Core/ChroniLog.Core.csproj --configuration Release --no-restore
+
+      # 6. Empaquetar con la versión del tag
+      - name: Pack
+        run: dotnet pack ./src/ChroniLog.Core/ChroniLog.Core.csproj \
+          --configuration Release \
+          -p:PackageVersion=${{ env.VERSION }} \
+          -o ./artifacts
+
+      # 7. Publicar a NuGet
+      - name: Publish to NuGet
+        run: dotnet nuget push ./artifacts/*.nupkg \
+          --api-key ${{ secrets.NUGET_API_KEY }} \
+          --source https://api.nuget.org/v3/index.json
