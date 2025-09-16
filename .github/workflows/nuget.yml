@@ -38,10 +38,7 @@ jobs:
 
       # 6. Empaquetar con la versión del tag
       - name: Pack
-        run: dotnet pack $PROJECT_LOCATION \
-          --configuration Release \
-          -p:PackageVersion=${{ env.VERSION }} \
-          -o ./artifacts
+        run: dotnet pack $PROJECT_LOCATION --configuration Release -p:PackageVersion=${{ env.VERSION }} -o ./artifacts
 
       # 7. Publicar a NuGet
       - name: Publish to NuGet
