@@ -20,9 +20,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Update="logo.png">
+      <None Include="logo.png">
         <Pack>True</Pack>
-        <PackagePath></PackagePath>
+        <PackagePath>\</PackagePath>
       </None>
     </ItemGroup>
 
