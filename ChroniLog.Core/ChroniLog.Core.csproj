@@ -27,8 +27,9 @@
         <None Include="..\LICENSE">
             <Pack>True</Pack>
         </None>
-        <None Update="..\logo.png">
-            <Pack>True</Pack>
+        <None Update="logo.png">
+          <Pack>True</Pack>
+          <PackagePath>\</PackagePath>
         </None>
     </ItemGroup>
 
