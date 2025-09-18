@@ -6,7 +6,7 @@ namespace ChroniLog.Flusher.PostgreSql.Extensions;
 
 public static class ChroniLogFlusherExtensions
 {
-    public static ILoggingBuilder AddChroniLog(this ILoggingBuilder builder)
+    public static ILoggingBuilder AddChroniLogFlushPostgreSql(this ILoggingBuilder builder)
     {
         builder.AddChroniLogCore();
 

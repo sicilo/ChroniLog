@@ -70,7 +70,8 @@ dotnet add package ChroniLog.Flusher.PostgreSql
                 builder.AddSingleton<NpgsqlDataSource>(serviceProvider =>
                 {
                     var options = serviceProvider.GetRequiredService<IOptions<ConnectionOptions>>().Value;
-                    return PgDataSource.BuildDataSource(options);
+                    var npgsqlDataSourceBuilder = new NpgsqlDataSourceBuilder(options.Database);
+                    return npgsqlDataSourceBuilder.Build();
                 });
             
             return builder;
