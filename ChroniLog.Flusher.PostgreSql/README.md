@@ -90,7 +90,7 @@ dotnet add package ChroniLog.Flusher.PostgreSql
    //Program.cs
     var builder = WebApplication.CreateBuilder(args);
     builder.Services.AddDatabase();
-    builder.Logging.AddNpgLog();
+    builder.Logging.AddChroniLogFlushPostgreSql();
    ```
 
 
