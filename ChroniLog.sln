@@ -1,6 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E0DE9D88-909E-440E-92FE-90CC2F6AB33C}"
+	ProjectSection(SolutionItems) = preProject
+		logo.png = logo.png
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChroniLog.Core", "ChroniLog.Core\ChroniLog.Core.csproj", "{BC7B06F8-AA08-4650-ADA4-B8DF8EBABF7D}"
 EndProject
