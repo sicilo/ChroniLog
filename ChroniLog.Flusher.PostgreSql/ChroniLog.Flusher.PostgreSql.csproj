@@ -13,6 +13,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="ChroniLog.Core" Version="2.0.0" />
         <PackageReference Include="Npgsql" Version="9.0.3"/>
     </ItemGroup>
 
@@ -28,10 +29,6 @@
           <Pack>True</Pack>
           <PackagePath>\</PackagePath>
         </None>
-    </ItemGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\ChroniLog.Core\ChroniLog.Core.csproj" />
     </ItemGroup>
 
 </Project>

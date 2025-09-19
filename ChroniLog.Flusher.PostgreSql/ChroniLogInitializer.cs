@@ -20,14 +20,14 @@ internal class ChroniLogInitializer : IHostedService
     {
         await using var connection = await _npgsqlDataSource.OpenConnectionAsync(cancellationToken);
         await using var transaction = await connection.BeginTransactionAsync(cancellationToken);
-
+        
         if (!string.IsNullOrEmpty(_settings.SchemaName))
         {
             var createSchemaQuery = $"create schema if not exists {_settings.SchemaName};";
             await using var createSchemaCommand = new NpgsqlCommand(createSchemaQuery, connection);
             await createSchemaCommand.ExecuteNonQueryAsync(cancellationToken);
         }
-
+        
         var tableName = string.IsNullOrEmpty(_settings.SchemaName)
             ? _settings.TableName
             : $"{_settings.SchemaName}.{_settings.TableName}";

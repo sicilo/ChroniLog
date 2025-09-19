@@ -8,7 +8,7 @@ namespace ChroniLog.Flusher.PostgreSql.Resolvers;
 public class FlushResolver : IFlushResolver
 {
     private readonly NpgsqlDataSource _npgsqlDataSource;
-    private readonly ChroniLogSettings _options;
+    private readonly ChroniLogSettings _settings;
 
     public FlushResolver(
         NpgsqlDataSource npgsqlDataSource,
@@ -16,17 +16,21 @@ public class FlushResolver : IFlushResolver
             )
     {
         _npgsqlDataSource = npgsqlDataSource;
-        _options = settings.Value;
+        _settings = settings.Value;
     }
     public async Task FlushAsync(List<ChroniLogEntry> logs, CancellationToken stoppingToken)
     {
         await using var connection = await _npgsqlDataSource.OpenConnectionAsync(stoppingToken);
 
+        var tableName = string.IsNullOrEmpty(_settings.SchemaName)
+            ? _settings.TableName
+            : $"{_settings.SchemaName}.{_settings.TableName}";
+        
         var query = $"""
-                     COPY {_options.TableName} (event_id, event_name, category, log_level, message, exception, created_at)
+                     COPY {tableName} (event_id, event_name, category, log_level, message, exception, created_at)
                      FROM STDIN (FORMAT BINARY)
                      """;
-
+        
         await using var writer = await connection.BeginBinaryImportAsync(query, stoppingToken);
 
         try
