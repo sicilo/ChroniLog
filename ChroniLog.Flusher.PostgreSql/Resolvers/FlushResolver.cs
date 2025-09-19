@@ -8,15 +8,15 @@ namespace ChroniLog.Flusher.PostgreSql.Resolvers;
 public class FlushResolver : IFlushResolver
 {
     private readonly NpgsqlDataSource _npgsqlDataSource;
-    private readonly ChroniLogOptions _options;
+    private readonly ChroniLogSettings _options;
 
     public FlushResolver(
         NpgsqlDataSource npgsqlDataSource,
-        IOptions<ChroniLogOptions> options
+        IOptions<ChroniLogSettings> settings
             )
     {
         _npgsqlDataSource = npgsqlDataSource;
-        _options = options.Value;
+        _options = settings.Value;
     }
     public async Task FlushAsync(List<ChroniLogEntry> logs, CancellationToken stoppingToken)
     {

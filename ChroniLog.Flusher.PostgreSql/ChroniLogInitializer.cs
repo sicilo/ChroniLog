@@ -5,23 +5,35 @@ using Npgsql;
 
 namespace ChroniLog.Flusher.PostgreSql;
 
-internal class ChroniLogInitializer :IHostedService
+internal class ChroniLogInitializer : IHostedService
 {
     private readonly NpgsqlDataSource _npgsqlDataSource;
-    private readonly ChroniLogOptions _options;
+    private readonly ChroniLogSettings _settings;
 
-    public ChroniLogInitializer(NpgsqlDataSource npgsqlDataSource, IOptions<ChroniLogOptions> options)
+    public ChroniLogInitializer(NpgsqlDataSource npgsqlDataSource, IOptions<ChroniLogSettings> settings)
     {
         _npgsqlDataSource = npgsqlDataSource;
-        _options = options.Value;
+        _settings = settings.Value;
     }
 
     public async Task StartAsync(CancellationToken cancellationToken)
     {
         await using var connection = await _npgsqlDataSource.OpenConnectionAsync(cancellationToken);
+        await using var transaction = await connection.BeginTransactionAsync(cancellationToken);
+
+        if (!string.IsNullOrEmpty(_settings.SchemaName))
+        {
+            var createSchemaQuery = $"create schema if not exists {_settings.SchemaName};";
+            await using var createSchemaCommand = new NpgsqlCommand(createSchemaQuery, connection);
+            await createSchemaCommand.ExecuteNonQueryAsync(cancellationToken);
+        }
+
+        var tableName = string.IsNullOrEmpty(_settings.SchemaName)
+            ? _settings.TableName
+            : $"{_settings.SchemaName}.{_settings.TableName}";
 
         var createTableQuery = $"""
-                                create table if not exists {_options.TableName} (
+                                create table if not exists {tableName} (
                                     event_id int,
                                     event_name text,
                                     category text,
@@ -31,9 +43,9 @@ internal class ChroniLogInitializer :IHostedService
                                     created_at timestamptz not null default now()
                                 );
                                 """;
-        
+
         await using var createTableCommand = new NpgsqlCommand(createTableQuery, connection);
-        
+
         await createTableCommand.ExecuteNonQueryAsync(cancellationToken);
     }
 
