@@ -4,10 +4,10 @@ using Microsoft.Extensions.Options;
 
 namespace ChroniLog.Core.Configurations;
 
-public class ConfigureChroniLogOptions(IConfiguration config) : IConfigureOptions<ChroniLogOptions>
+public class ConfigureChroniLogOptions(IConfiguration config) : IConfigureOptions<ChroniLogSettings>
 {
-    public void Configure(ChroniLogOptions options)
+    public void Configure(ChroniLogSettings settings)
     {
-        config.GetSection(nameof(ChroniLogOptions)).Bind(options);
+        config.GetSection(nameof(ChroniLogSettings)).Bind(settings);
     }
 }

@@ -15,7 +15,7 @@ public static class ChroniLogExtensions
         
         builder.Services.AddSingleton<Channel<ChroniLogEntry>>(sp =>
         {
-            var opts = sp.GetRequiredService<IOptions<ChroniLogOptions>>().Value;
+            var opts = sp.GetRequiredService<IOptions<ChroniLogSettings>>().Value;
 
             return Channel.CreateBounded<ChroniLogEntry>(new BoundedChannelOptions(opts.ChannelCapacity)
             {
