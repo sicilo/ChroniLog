@@ -20,33 +20,43 @@ internal class ChroniLogInitializer : IHostedService
     {
         await using var connection = await _npgsqlDataSource.OpenConnectionAsync(cancellationToken);
         await using var transaction = await connection.BeginTransactionAsync(cancellationToken);
-        
-        if (!string.IsNullOrEmpty(_settings.SchemaName))
+
+        try
         {
-            var createSchemaQuery = $"create schema if not exists {_settings.SchemaName};";
-            await using var createSchemaCommand = new NpgsqlCommand(createSchemaQuery, connection);
-            await createSchemaCommand.ExecuteNonQueryAsync(cancellationToken);
+            if (!string.IsNullOrEmpty(_settings.SchemaName))
+            {
+                var createSchemaQuery = $"create schema if not exists {_settings.SchemaName};";
+                await using var createSchemaCommand = new NpgsqlCommand(createSchemaQuery, connection, transaction);
+                await createSchemaCommand.ExecuteNonQueryAsync(cancellationToken);
+            }
+
+            var tableName = string.IsNullOrEmpty(_settings.SchemaName)
+                ? _settings.TableName
+                : $"{_settings.SchemaName}.{_settings.TableName}";
+
+            var createTableQuery = $"""
+                                    create table if not exists {tableName} (
+                                        event_id int,
+                                        event_name text,
+                                        category text,
+                                        log_level text not null,
+                                        message text not null,
+                                        exception text null,
+                                        created_at timestamptz not null default now()
+                                    );
+                                    """;
+
+            await using var createTableCommand = new NpgsqlCommand(createTableQuery, connection, transaction);
+
+            await createTableCommand.ExecuteNonQueryAsync(cancellationToken);
+            await transaction.CommitAsync(cancellationToken);
         }
-        
-        var tableName = string.IsNullOrEmpty(_settings.SchemaName)
-            ? _settings.TableName
-            : $"{_settings.SchemaName}.{_settings.TableName}";
-
-        var createTableQuery = $"""
-                                create table if not exists {tableName} (
-                                    event_id int,
-                                    event_name text,
-                                    category text,
-                                    log_level text not null,
-                                    message text not null,
-                                    exception text null,
-                                    created_at timestamptz not null default now()
-                                );
-                                """;
-
-        await using var createTableCommand = new NpgsqlCommand(createTableQuery, connection);
-
-        await createTableCommand.ExecuteNonQueryAsync(cancellationToken);
+        catch (Exception e)
+        {
+            await transaction.RollbackAsync(cancellationToken);
+            Console.WriteLine(e);
+            throw;
+        }
     }
 
     public Task StopAsync(CancellationToken cancellationToken) => Task.CompletedTask;
